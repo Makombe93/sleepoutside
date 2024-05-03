@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
 //create a new function in the utils.mjs file called getParams(param)
 // that we can use to get a parameter from the URL when we need to
 
-export function getParams(param){
+export function getParam(param){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
