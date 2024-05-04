@@ -5,10 +5,9 @@ function renderCartContents() {
 
   if (cartItems == null) {
     const p = document.createElement("p");
-    p.textContent = "No items yet"
+    p.textContent = "No items yet";
     document.querySelector(".product-list").appendChild(p);
-  }
-  else {
+  } else {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
   }
