@@ -22,12 +22,11 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-//create a new function in the utils.mjs file called getParams(param)
-// that we can use to get a parameter from the URL when we need to
-
-export function getParam(param){
+// get parameters from a URL
+export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
+
   return product;
 }
