@@ -39,3 +39,11 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function numberOfItemsIcon(){
+  const cart = getLocalStorage("so-cart");
+  const quantity = cart.length;
+  const icon = `<div class="cart-icon">${quantity}</div>`;
+  const cartElement = document.querySelector(".cart");
+  cartElement.insertAdjacentHTML("beforeend", icon);
+}
