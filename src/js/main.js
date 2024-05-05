@@ -1,8 +1,10 @@
 import ProductData from "./ProductData.mjs";
 import ProductListing from "./ProductList.mjs";
+import { numberOfItemsIcon } from "./utils.mjs";
 
-const dataSource = new ProductData("tents");
-const ulElement = document.querySelector(".product-list");
-const productsList = new ProductListing("Tents", dataSource, ulElement);
+const productData = new ProductData("tents");
+const element = document.querySelector(".product-list");
+const productList = new ProductListing("Tents", productData, element);
 
-productsList.init();
+productList.init();
+numberOfItemsIcon();

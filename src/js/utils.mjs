@@ -31,12 +31,19 @@ export function getParams(param) {
   return product;
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
-  const htmlString = list.map(templateFn);
-
-  if (clear) {
+//Make a new function in the utils.mjs file called renderListWithTemplate and export it.
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false){
+  const htmlStrings = list.map(templateFn);
+  if (clear){
     parentElement.innerHTML = "";
   }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
-  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+export function numberOfItemsIcon(){
+  const cart = getLocalStorage("so-cart");
+  const quantity = cart.length;
+  const icon = `<div class="cart-icon">${quantity}</div>`;
+  const cartElement = document.querySelector(".cart");
+  cartElement.insertAdjacentHTML("beforeend", icon);
 }
