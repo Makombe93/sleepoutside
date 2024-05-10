@@ -47,3 +47,26 @@ export function numberOfItemsIcon(){
   const cartElement = document.querySelector(".cart");
   cartElement.insertAdjacentHTML("beforeend", icon);
 }
+
+export function renderWithTemplate(template, parent, data, callback) {
+  parent.insertAdjacentHTML("afterbegin", template);
+  if(callback) {
+    callback(data);
+  }
+}
+
+async function loadTemplate(path) {
+  const html = await fetch(path);
+  const template = await html.text()
+  return template;
+}
+
+
+export async function loadHeaderFooter () {
+  const header = await loadTemplate("../partials/header.html");
+  const footer = await loadTemplate("../partials/footer.html");
+  const headerElement = document.getElementById("main-header");
+  const footerElement = document.getElementById("footer");
+  renderWithTemplate(footer, footerElement);
+  renderWithTemplate(header, headerElement, header, numberOfItemsIcon);
+}
