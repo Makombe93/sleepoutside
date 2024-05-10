@@ -1,10 +1,4 @@
-import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";
-import { numberOfItemsIcon } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-const productData = new ProductData("tents");
-const element = document.querySelector(".product-list");
-const productList = new ProductListing("Tents", productData, element);
+loadHeaderFooter();
 
-productList.init();
-numberOfItemsIcon();
