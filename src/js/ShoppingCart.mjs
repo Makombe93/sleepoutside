@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
-    const newItem = `<li class="cart-card divider">
+  const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
         src="${item.Image}"
@@ -16,24 +16,24 @@ function cartItemTemplate(item) {
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
 
-    return newItem;
+  return newItem;
 }
 
 export default class ShoppingCart {
-    constructor(htmlElement) {
-        this.htmlElement = htmlElement;
-    }
+  constructor(htmlElement) {
+    this.htmlElement = htmlElement;
+  }
 
-    renderCart() {
-        const cartItems = getLocalStorage("so-cart");
+  renderCart() {
+    const cartItems = getLocalStorage("so-cart");
 
-        if (cartItems == null) {
-            const p = document.createElement("p");
-            p.textContent = "No items yet";
-            document.querySelector(".product-list").appendChild(p);
-        } else {
-            const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-            document.querySelector(this.htmlElement).innerHTML = htmlItems.join("");
-        }
+    if (cartItems == null) {
+      const p = document.createElement("p");
+      p.textContent = "No items yet";
+      document.querySelector(".product-list").appendChild(p);
+    } else {
+      const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      document.querySelector(this.htmlElement).innerHTML = htmlItems.join("");
     }
+  }
 }

@@ -40,8 +40,8 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", callback) {
-  parentElement.insertAdjacentHTML(position, templateFn);
+export function renderWithTemplate(templateFn, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", templateFn);
 
   if (callback) {
     callback(data);
@@ -55,7 +55,7 @@ export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
 
-  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(headerTemplate, headerElement, headerTemplate, numberOfItemsIcon);
   renderWithTemplate(footerTemplate, footerElement);
 
 
