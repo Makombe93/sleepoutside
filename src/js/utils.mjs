@@ -32,15 +32,43 @@ export function getParams(param) {
 }
 
 //Make a new function in the utils.mjs file called renderListWithTemplate and export it.
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false){
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn);
-  if (clear){
+  if (clear) {
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function numberOfItemsIcon(){
+export function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", callback) {
+  parentElement.insertAdjacentHTML(position, templateFn);
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadHeaderFooter() {
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+
+
+}
+
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+
+  return template;
+}
+
+export function numberOfItemsIcon() {
   const cart = getLocalStorage("so-cart");
   const quantity = cart.length;
   const icon = `<div class="cart-icon">${quantity}</div>`;
