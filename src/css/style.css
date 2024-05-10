@@ -211,6 +211,28 @@ button {
   grid-column: 3;
 }
 
+.grid{
+  padding: 0 0.5em;
+  max-width: 600px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4,25%);
+  font-size: var(--small-font);
+  align-items: center;
+}
+
+.grid-card{
+  display: grid;
+  padding: 10%;
+}
+.grid-card a{
+  text-decoration: none;
+  text-align: center;
+  color: var(--dark-grey);
+  font-weight: bold;
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
