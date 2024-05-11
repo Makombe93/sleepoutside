@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { numberOfItemsIcon, setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -26,9 +26,19 @@ export default class ProductDetails {
             productsList = [];
         }
 
-        productsList.push(this.product);
+        const existingProductIndex = productsList.findIndex(item => item.Id === this.product.Id);
+        
+        if (existingProductIndex === -1) {
+            this.product.quantity = 1;
+            this.product.totalPrice = this.product.FinalPrice * this.product.quantity;
+            productsList.push(this.product);
+        } else {
+            productsList[existingProductIndex].quantity += 1;
+            this.product.totalPrice = this.product.FinalPrice * this.product.quantity;
+        }
 
         setLocalStorage("so-cart", productsList);
+        numberOfItemsIcon();
     }
 
     renderProductDetails(selector) {

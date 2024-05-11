@@ -56,9 +56,6 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(footerTemplate, footerElement);
   renderWithTemplate(headerTemplate, headerElement, headerTemplate, numberOfItemsIcon);
-
-
-
 }
 
 export async function loadTemplate(path) {
@@ -70,7 +67,14 @@ export async function loadTemplate(path) {
 
 export function numberOfItemsIcon() {
   const cart = getLocalStorage("so-cart");
-  const quantity = cart.length;
+  let quantity = 0;
+  if (cart == null){
+    quantity = 0;
+  }  
+  else{
+    quantity = cart.reduce((total, product) => total + product.quantity, 0);
+  };
+
   const icon = `<div class="cart-icon">${quantity}</div>`;
   const cartElement = document.querySelector(".cart");
   cartElement.insertAdjacentHTML("beforeend", icon);

@@ -229,11 +229,16 @@ button {
 .cart-card__quantity {
   grid-row: 1;
   grid-column: 3;
+  text-align: center;
 }
 
 .cart-card__price {
+  grid-row: 1;
+  grid-column: 4;
+}
+.cart-card__total{
   grid-row: 2;
-  grid-column: 3;
+  grid-column: 4;
 }
 
 /* css for grid of product categories*/
