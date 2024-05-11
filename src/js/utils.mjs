@@ -27,7 +27,6 @@ export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
-
   return product;
 }
 
@@ -55,8 +54,9 @@ export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
 
-  renderWithTemplate(headerTemplate, headerElement, headerTemplate, numberOfItemsIcon);
   renderWithTemplate(footerTemplate, footerElement);
+  renderWithTemplate(headerTemplate, headerElement, headerTemplate, numberOfItemsIcon);
+
 
 
 }
@@ -75,3 +75,4 @@ export function numberOfItemsIcon() {
   const cartElement = document.querySelector(".cart");
   cartElement.insertAdjacentHTML("beforeend", icon);
 }
+
