@@ -34,6 +34,15 @@ export default class ShoppingCart {
     } else {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(this.htmlElement).innerHTML = htmlItems.join("");
+
+      const cartTotal = document.querySelector(".cart-total");
+      let totalPrice = 0;
+      cartItems.forEach((item) => {
+        totalPrice += item.FinalPrice
+      });
+      cartTotal.textContent = `Total: $${totalPrice}`;
+      document.querySelector(".cart-footer-hide").style.display = "block";
+
     }
   }
 }
