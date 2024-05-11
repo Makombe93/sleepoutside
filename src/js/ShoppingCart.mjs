@@ -20,13 +20,20 @@ function cartItemTemplate(item) {
 }
 
 export default class ShoppingCart {
-  constructor(key, parentSelector) {
-    this.key = key;
-    this.parentSelector = parentSelector;
+  constructor(htmlElement) {
+      this.htmlElement = htmlElement;
   }
-  renderCartContents() {
-    const cartItems = getLocalStorage(this.key);
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+
+  renderCart() {
+      const cartItems = getLocalStorage("so-cart");
+
+      if (cartItems == null) {
+          const p = document.createElement("p");
+          p.textContent = "No items yet";
+          document.querySelector(".product-list").appendChild(p);
+      } else {
+          const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+          document.querySelector(this.htmlElement).innerHTML = htmlItems.join("");
+      }
   }
 }

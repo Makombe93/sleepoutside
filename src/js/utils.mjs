@@ -69,3 +69,4 @@ export async function loadHeaderFooter () {
   renderWithTemplate(footer, footerElement);
   renderWithTemplate(header, headerElement, header, numberOfItemsIcon);
 }
+

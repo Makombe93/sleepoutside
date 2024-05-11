@@ -9,4 +9,3 @@ const element = document.querySelector(".product-list");
 const productList = new ProductListing(category, productData, element);
 
 productList.init();
-
