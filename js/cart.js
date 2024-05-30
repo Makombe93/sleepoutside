@@ -22,6 +22,25 @@ function cartItemTemplate(item) {
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartFooter = document.querySelector('.cart-footer');
+    const cartTotalAmount = document.getElementById('cart-total-amount');
+    
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cartItems.length > 0) {
+        cartFooter.classList.remove('hide');
+        const total = calculateCartTotal(cartItems);
+        cartTotalAmount.textContent = total.toFixed(2);
+    }
+});
+
+function calculateCartTotal(cartItems) {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+}
+
+
   return newItem;
 }
 
